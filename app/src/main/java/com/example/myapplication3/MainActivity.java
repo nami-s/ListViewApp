@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         // データを準備
         ArrayList<String> items = new ArrayList<>();
         for (int i = 0; i < 30; i++){
-            items.add("item-" + i);
+            // items.add("item-" + i);
         }
 
         //　Adapter - ArrayAdapter
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
         //ListViewに表示
+        myListView.setEmptyView(findViewById(R.id.emptyView));
         myListView.setAdapter(adapter);
     }
 }
