@@ -2,9 +2,14 @@ package com.example.myapplication3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -51,9 +56,32 @@ public class MainActivity extends AppCompatActivity {
             user.setLoc(locs[i]);
         }
 
-        //　Adapter - ArrayAdapter
+        //　Adapter - ArrayAdapter - UserAdapter
+        UserAdapter adapter = new UserAdapter(this, 0, users);
 
         //ListViewに表示
+    }
+
+    public class UserAdapter extends ArrayAdapter<User> {
+        private LayoutInflater layoutInflater;
+
+        public UserAdapter(Context c, int id, ArrayList<User> users){
+            super(c, id, users);
+            this.layoutInflater = (LayoutInflater) c.getSystemService(
+                    Context.LAYOUT_INFLATER_SERVICE
+            );
+        }
+
+        @Override
+        public View getView(int pos, View convertView, ViewGroup parent){
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(
+                        R.layout.list_item,
+                        parent,
+                        false
+                );
+            }
+        }
     }
 
     public class User{
