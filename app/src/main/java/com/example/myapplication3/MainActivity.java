@@ -3,6 +3,7 @@ package com.example.myapplication3;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -20,7 +21,35 @@ public class MainActivity extends AppCompatActivity {
         ListView myListView = (ListView) findViewById(R.id.listView);
 
         // データを準備
+        ArrayList<User> users = new ArrayList<>();
 
+        int[] icons = {
+                R.mipmap.ic_launcher,
+                R.mipmap.ic_launcher,
+                R.mipmap.ic_launcher,
+        };
+
+        String[] names = {
+                "Taguchi",
+                "Tanaka",
+                "Suzuki",
+        };
+
+        String[] locs = {
+                "Ebisu",
+                "Shibuya",
+                "Tokyo",
+        };
+
+        for (int i = 0; i < icons.length; i++){
+            User user = new User();
+            user.setIcon(BitmapFactory.decodeResource(
+                    getResources(),
+                    icons[i]
+            ));
+            user.setName(names[i]);
+            user.setLoc(locs[i]);
+        }
 
         //　Adapter - ArrayAdapter
 
