@@ -19,20 +19,9 @@ public class MainActivity extends AppCompatActivity {
         ListView myListView = (ListView) findViewById(R.id.listView);
 
         // データを準備
-        ArrayList<String> items = new ArrayList<>();
-        for (int i = 0; i < 30; i++){
-            // items.add("item-" + i);
-        }
 
         //　Adapter - ArrayAdapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                R.layout.list_item,
-                items
-        );
 
         //ListViewに表示
-        myListView.setEmptyView(findViewById(R.id.emptyView));
-        myListView.setAdapter(adapter);
     }
 }
