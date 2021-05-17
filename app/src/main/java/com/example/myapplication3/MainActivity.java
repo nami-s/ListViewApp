@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,12 +56,14 @@ public class MainActivity extends AppCompatActivity {
             ));
             user.setName(names[i]);
             user.setLoc(locs[i]);
+            users.add(user);
         }
 
         //　Adapter - ArrayAdapter - UserAdapter
         UserAdapter adapter = new UserAdapter(this, 0, users);
 
         //ListViewに表示
+        myListView.setAdapter(adapter);
     }
 
     public class UserAdapter extends ArrayAdapter<User> {
@@ -81,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
                         false
                 );
             }
+
+            User user = (User) getItem(pos);// getItem() 何番目を引っ張ってくるかのメソッド
+            ((ImageView) convertView.findViewById(R.id.icon)).setImageBitmap(user.getIcon());
+            ((TextView) convertView.findViewById(R.id.name)).setText(user.getName());
+            ((TextView) convertView.findViewById(R.id.loc)).setText(user.getLoc());
+            return convertView;
         }
     }
 
