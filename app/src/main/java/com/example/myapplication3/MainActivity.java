@@ -78,20 +78,34 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View getView(int pos, View convertView, ViewGroup parent){
+            ViewHolder holder;
             if (convertView == null) {
                 convertView = layoutInflater.inflate(
                         R.layout.list_item,
                         parent,
                         false
                 );
+                holder = new ViewHolder();
+                holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+                holder.name = (TextView) convertView.findViewById(R.id.name);
+                holder.loc = (TextView) convertView.findViewById(R.id.loc);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
             }
 
             User user = (User) getItem(pos);// getItem() 何番目を引っ張ってくるかのメソッド
-            ((ImageView) convertView.findViewById(R.id.icon)).setImageBitmap(user.getIcon());
-            ((TextView) convertView.findViewById(R.id.name)).setText(user.getName());
-            ((TextView) convertView.findViewById(R.id.loc)).setText(user.getLoc());
+            holder.icon.setImageBitmap(user.getIcon());
+            holder.name.setText(user.getName());
+            holder.loc.setText(user.getLoc());
             return convertView;
         }
+    }
+
+    static class ViewHolder{
+        ImageView icon;
+        TextView name;
+        TextView loc;
     }
 
     public class User{
