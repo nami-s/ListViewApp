@@ -10,10 +10,12 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +66,25 @@ public class MainActivity extends AppCompatActivity {
 
         //ListViewに表示
         myListView.setAdapter(adapter);
+
+        // Event
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(
+                    AdapterView<?> adapterView,
+                    View view, // タップされたView
+                    int i, // 何番目？
+                    long l // View id
+            ) {
+                TextView name = (TextView) view.findViewById(R.id.name);
+                Toast.makeText(
+                        MainActivity.this,
+                        Integer.toString(i) + ":" + name.getText().toString(),
+                        Toast.LENGTH_SHORT
+                ).show();
+                name.setText("Tapped!");
+            }
+        });
     }
 
     public class UserAdapter extends ArrayAdapter<User> {
